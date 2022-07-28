@@ -1,0 +1,16 @@
+<%- include('../partials/header'); %>
+
+<section>
+    <h2>Espèces</h2>
+    <div><a href="/species/create">Ajouter une espèce</a></div>
+    <% species.forEach(singleSpecies => { %>
+    <article class="plant-item">
+        <h3><%= singleSpecies.name %></h3>
+        <h4><%= singleSpecies.scientificName %></h4>
+        <p><%= singleSpecies.description %></p>
+        <a href="/species/<%= singleSpecies.id %>">Voir le détail</a>
+    </article>
+    <% }); %>
+</section>
+
+<%- include('../partials/footer'); %>

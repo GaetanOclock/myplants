@@ -1,0 +1,24 @@
+<%- include('../partials/header'); %>
+
+<section>
+    <h2>Nouvelle plante</h2>
+    <form action="/plant" method="POST">
+        <div>
+            <input type="text" name="name" required autofocus>
+        </div>
+        <div>
+            <select name="species">
+
+            </select>
+        </div>
+        <div>
+            <input type="text" name="picture" placeholder="image">
+        </div>
+        <div>
+            <textarea name="description" cols="30" rows="10" placeholder="Description"></textarea>
+        </div>
+        <div><button type="submit">Ajouter</button></div>
+    </form>
+</section>
+
+<%- include('../partials/footer'); %>

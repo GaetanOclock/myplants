@@ -1,0 +1,17 @@
+<%- include('../partials/header'); %>
+
+<section>
+    <h2>Mes plantes</h2>
+    <div><a href="/plant/create">Ajouter une plante</a></div>
+    <% plants.forEach(plant => { %>
+    <article class="plant-item">
+        <img width="200" src="https://images.unsplash.com/photo-1453904300235-0f2f60b15b5d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=686&q=80" alt="plantName is a species">
+        <h3><%= plant.name %></h3>
+        <h4>speciez</h4>
+        <div class="details">Besoins : waterNeeded lightNeeded</div>
+        <p><%= plant.description %></p>
+    </article>
+    <% }); %>
+</section>
+
+<%- include('../partials/footer'); %>

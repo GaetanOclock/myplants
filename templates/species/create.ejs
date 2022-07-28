@@ -1,0 +1,27 @@
+<%- include('../partials/header'); %>
+
+<section>
+    <h2>Nouvelle espèce</h2>
+    <form action="/species" method="POST">
+        <div>
+            <input type="text" name="name" placeholder="Nom" required autofocus>
+        </div>
+        <div>
+            <input type="text" name="scientificName" placeholder="Nom scientifique" required autofocus>
+        </div>
+        <div>
+            Besoin en eau (de 1 à 5)
+            <input name="waterNeeded" type="number" min="1" max="5">
+        </div>
+        <div>
+            Besoin en lumière (de 1 à 5)
+            <input name="lightNeeded" type="number" min="1" max="5">
+        </div>
+        <div>
+            <textarea name="description" cols="30" rows="10" placeholder="Description"></textarea>
+        </div>
+        <div><button type="submit">Ajouter</button></div>
+    </form>
+</section>
+
+<%- include('../partials/footer'); %>
