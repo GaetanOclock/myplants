@@ -1,0 +1,20 @@
+<%- include('../partials/header'); %>
+
+<h1>Connexion</h1>
+<form action="/user/connection" method="post">
+    <div>
+        <input type="email" placeholder="email" name="email" autofocus required>
+    </div>
+    <div>
+        <input type="password" placeholder="password" name="password" required>
+    </div>
+    <div>
+        <button type="submit">Connexion</button>
+    </div>
+    <div>
+        <a href="/user/forgot-password">Mot de passe oublié</a> | <a href="/user/register">Créer un compte</a>
+    </div>
+</form>
+
+
+<%- include('../partials/footer'); %>

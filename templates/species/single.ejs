@@ -1,0 +1,19 @@
+<%- include('../partials/header'); %>
+
+<h1><%= species.name %> <span class="scientific-name">(<%= species.scientificName %>)</span></h1>
+<div class="actions"><a href="/species/<%= species.id %>/edit">Editer</a> | <a href="/species/<%= species.id %>/delete">Supprimer</a></div>
+<section>
+    <h2>Informations</h2>
+    <ul>
+        <li>Besoins en eau : <%= species.waterNeeded %></li>
+        <li>Besoins en lumière : <%= species.lightNeeded %></li>
+    </ul>
+</section>
+<section>
+    <h2>Description</h2>
+    <div>
+        <%= species.description %>
+    </div>
+</section>
+
+<%- include('../partials/footer'); %>

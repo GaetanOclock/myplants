@@ -1,0 +1,20 @@
+<%- include('../partials/header'); %>
+
+<h1><%= plant.name %></h1>
+<div class="actions"><a href="/plant/<%= plant.id %>/edit">Editer</a> | <a href="/plant/<%= plant.id %>/delete">Supprimer</a></div>
+<section>
+    <h2>Informations</h2>
+    <ul>
+        <li>Espèce : </li>
+        <li>Besoins en eau : </li>
+        <li>Besoins en lumière : </li>
+    </ul>
+</section>
+<section>
+    <h2>Description</h2>
+    <div>
+        <%= plant.description %>
+    </div>
+</section>
+
+<%- include('../partials/footer'); %>

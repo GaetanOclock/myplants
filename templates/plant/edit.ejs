@@ -1,0 +1,27 @@
+<%- include('../partials/header'); %>
+
+<section>
+    <h2>Modifier "<%= plant.name %>"</h2>
+    <form action="/plant/<%= plant.id %>/edit" method="POST">
+        <div>
+            <input type="text" value="<%= plant.name %>" name="name" required autofocus>
+        </div>
+        <div>
+            <select name="species">
+            <%  species.forEach(oneSpecies => { %>
+            <option <% if(plant.Species.id === oneSpecies.id) { %>selected<% } %> value="<%= oneSpecies.id %>"><%= oneSpecies.name %></option>   
+            <%  }); %>
+            </select>
+        </div>
+        <div>
+            <img src="<%= plant.picture %>" alt="" width="200">
+            <input type="text" value="<%= plant.picture %>" name="picture" placeholder="image">
+        </div>
+        <div>
+            <textarea name="description" cols="30" rows="10" placeholder="Description"><%= plant.description %></textarea>
+        </div>
+        <div><button type="submit">Mettre à jour</button></div>
+    </form>
+</section>
+
+<%- include('../partials/footer'); %>

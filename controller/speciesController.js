@@ -1,15 +1,33 @@
 const { VERSION } = require('ejs');
 const Species = require('../models/Species');
 
+const updateOrCreate = async (req) => {
+    let species = null;
+    if (!req.params.id) {
+        species = new Species();
+    } else {
+        species = await Species.findByPk(req.params.id);
+    }
+    species.name = req.body.name;
+    species.scientificName = req.body.scientificName;
+    species.description = req.body.description;
+    species.waterNeeded = req.body.waterNeeded;
+    species.lightNeeded = req.body.lightNeeded;
+    await species.save();
+
+    return species;
+};
+
 module.exports = {
     // show list
     list: async (req, res) => {
         const species = await Species.findAll();
         res.render('species/list', {title: "Espèces", species});
     },
-    // show single plant
-    show: (req, res) => {
-
+    // show single
+    show: async (req, res) => {
+        const species = await Species.findByPk(req.params.id);
+        res.render('species/single', {title: species.name, species});
     },
     // display creation form
     create: (req, res) => {
@@ -17,22 +35,21 @@ module.exports = {
     },
     // handle creation action
     insert: async (req, res) => {
-        const newSpecies = new Species();
-        newSpecies.name = req.body.name;
-        newSpecies.scientificName = req.body.scientificName;
-        newSpecies.description = req.body.description;
-        newSpecies.waterNeeded = req.body.waterNeeded;
-        newSpecies.lightNeeded = req.body.lightNeeded;
-        await newSpecies.save();
-
+        updateOrCreate(req);
         res.redirect('/species');
     },
+    edit: async (req, res) => {
+        const species = await Species.findByPk(req.params.id);
+        res.render('species/edit', {title: species.name, species});
+    },
     // handle update action
-    update: (req, res) => {
-
+    update: async (req, res) => {
+        updateOrCreate(req);
+        res.redirect('/species/' + req.params.id);
     },
     // handle delete action
-    delete: (req, res) => {
-        
+    delete: async (req, res) => {
+        await Species.destroy({where: {id: req.params.id}});
+        res.redirect('/species');
     }
 };

@@ -5,9 +5,15 @@ const path = require('path');
 const plantsRouter = require('./router/plants');
 const speciesRouter = require('./router/species');
 const commonRouter = require('./router/common');
+const userRouter = require('./router/users');
 
 const database = require('./utils/database');
 
+const Plant = require('./models/Plant');
+const Species = require('./models/Species');
+
+Plant.belongsTo(Species, {foreignKey: 'species_id'});
+Species.hasMany(Plant, {foreignKey: 'species_id'});
 
 const app = express();
 
@@ -26,6 +32,7 @@ app.use(express.urlencoded({extended: false}));
 app.use('/', commonRouter);
 app.use('/plant', plantsRouter);
 app.use('/species', speciesRouter);
+app.use('/user', userRouter);
 
 app.listen(3000, () => {
     console.log('Server running : http://localhost:3000');

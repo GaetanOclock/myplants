@@ -1,37 +1,30 @@
 const { Sequelize, DataTypes, Model } = require('sequelize');
 const database = require('../utils/database');
-const Plant = require('./Plant');
 
-class Species extends Model {}
+class User extends Model {}
 
-Species.init({  
+User.init({  
         id: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true
         },
-        name: {
+        email: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        scientificName: {
+        username: {
             type: DataTypes.STRING
         },
-        description: {
+        password: {
             type: DataTypes.STRING
-        },
-        waterNeeded: {
-            type: DataTypes.INTEGER
-        },
-        lightNeeded: {
-            type: DataTypes.INTEGER
         }
     },
     {
         sequelize: database,
-        modelName: 'Species',
-        tableName: 'species'
+        modelName: 'User',
+        tableName: 'users'
     }
 );
 
-module.exports = Species;
+module.exports = User;

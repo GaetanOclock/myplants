@@ -1,5 +1,6 @@
 const { Sequelize, DataTypes, Model } = require('sequelize');
 const database = require('../utils/database');
+const Species = require('./Species');
 
 class Plant extends Model {}
 
@@ -18,6 +19,9 @@ Plant.init({
         },
         description: {
             type: DataTypes.STRING
+        },
+        species_id: {
+            type: DataTypes.INTEGER
         }
     },
     {
