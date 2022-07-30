@@ -11,17 +11,21 @@ module.exports = {
             throw new Error("Email not given.");
         }
         const user = await User.findOne({where: {email: req.body.email}});
-        const isValid = await bcrypt.compare(req.body.password, user.password);
-        
-        if (isValid) {
-            req.session.user = user;
-            res.redirect('/user/dashboard');
-        } else {
-            req.session.user = null;
+
+        if (!user) {
+            res.status(404);
             res.redirect('/user/connection');
+        } else {
+            const isValid = await bcrypt.compare(req.body.password, user.password);
+            
+            if (isValid) {
+                req.session.user = user;
+                res.redirect('/user/dashboard');
+            } else {
+                req.session.user = null;
+                res.redirect('/user/connection');
+            }
         }
-
-
     },
     disconnect: (req, res) => {
         req.session.user = null;
